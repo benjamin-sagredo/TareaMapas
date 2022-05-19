@@ -14,7 +14,7 @@ public class RegionRepositoryImp implements RegionRepository{
     @Override
     public List<Region> getAllRegions() {
         try(Connection conn = sql2o.open()){
-            final String query = "SELECT nom_reg FROM division_regional WHERE pobl2010 != 0;";
+            final String query = "SELECT gid, nom_reg FROM division_regional WHERE pobl2010 != 0;";
             return conn.createQuery(query).executeAndFetch(Region.class);
         }catch (Exception e){
             System.out.println(e.getMessage());
